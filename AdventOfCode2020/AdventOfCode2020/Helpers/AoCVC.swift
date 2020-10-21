@@ -8,19 +8,101 @@
 import UIKit
 
 protocol AdventDay {
+    var numChallenges: Int { get }
+    
     func loadInput()
-    func solveFirst()
-    func solveSecond()
+    func solve(challenge: Int)
 }
 
 class AoCVC: UIViewController {
-    private var solution1Label: UILabel!
-    private var solution2Label: UILabel!
+    private var solutionLabels: [UILabel] = []
+    private var solutionButtons: [UIButton] = []
 
-    private var startTime = Date()
-    private var solution1Time = Date()
+    private var solutionStartTimes: [Date] = []
+    
+    // DayXXInput
+    var defaultInputFileString: String {
+        return self.title!.appending("Input").replacingOccurrences(of: " ", with: "")
+    }
+    
+    private var adventDay: AdventDay {
+        guard let adventDay = self as? AdventDay else { fatalError("VC must conform to AdventDay protocol") }
+        return adventDay
+    }
+    
+    private var numChallenges: Int {
+        return self.adventDay.numChallenges
+    }
 
-    private var label: UILabel {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.initializeTimers()
+        self.configureUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.loadInput()
+        self.enableButtons()
+    }
+
+    private func initializeTimers() {
+        self.solutionStartTimes = Array<Date>(repeating: Date(), count: self.numChallenges)
+    }
+
+    private func configureUI() {
+        self.view.backgroundColor = .systemBackground
+        
+        let stackView = self.createStackView()
+        self.view.addSubview(stackView)
+        stackView.constrainToSuperView(leading: 40, trailing: 40, top: 20, bottom: 20, useSafeArea: true)
+        
+        for challenge in 0..<self.numChallenges {
+            let button = self.createButton(challenge: challenge)
+            self.solutionButtons.append(button)
+            stackView.addArrangedSubview(button)
+            
+            let label = self.createLabel()
+            label.isHidden = true
+            self.solutionLabels.append(label)
+            stackView.addArrangedSubview(label)
+        }
+    }
+    
+    private func loadInput() {
+        let loadTime = Date()
+        self.adventDay.loadInput()
+        print("\(self.title!) input loaded in \(DateHelper.getElapsedTimeString(from: loadTime))")
+    }
+    
+    private func enableButtons() {
+        self.solutionButtons.forEach({$0.isEnabled = true})
+    }
+
+    func setSolution(challenge: Int, text: String) {
+        let timeString = DateHelper.getElapsedTimeString(from: self.solutionStartTimes[challenge])
+        self.solutionButtons[challenge].isHidden = true
+        self.solutionLabels[challenge].text = "\(text)\n\n\(timeString)"
+        self.solutionLabels[challenge].isHidden = false
+        print("\(self.title!) Solution \(challenge + 1): \(text) -- \(timeString)")
+    }
+}
+
+// UI creation
+extension AoCVC {
+    private func createButton(challenge: Int) -> UIButton {
+        let button = UIButton(type: .system)
+        let title = "Solve \(challenge + 1)"
+        button.setTitle(title, for: .normal)
+        button.tag = challenge
+        button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
+        button.isEnabled = false
+        return button
+    }
+    
+    private func createLabel() -> UILabel {
         let label = UILabel()
         label.font = UIFont.monospacedSystemFont(ofSize: 20, weight: .regular)
         label.textAlignment = .left
@@ -28,55 +110,20 @@ class AoCVC: UIViewController {
         return label
     }
     
-    var defaultInputFileString: String {
-        return self.title?.replacingOccurrences(of: " ", with: "").appending("Input") ?? "N/A"
+    @objc private func buttonTapped(sender: UIButton) {
+        let index = sender.tag
+        sender.isEnabled = false
+        self.solutionStartTimes[index] = Date()
+        self.adventDay.solve(challenge: index)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.backgroundColor = .systemBackground
-
+    
+    func createStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.distribution = .fillEqually
-        self.view.addSubview(stackView)
-        stackView.constrainToSuperView(leading: 40, trailing: 40, top: 20, bottom: 20, useSafeArea: true)
-
-        self.solution1Label = self.label
-        self.solution2Label = self.label
-
-        stackView.addArrangedSubview(self.solution1Label)
-        stackView.addArrangedSubview(self.solution2Label)
-
-        if let adventDay = self as? AdventDay {
-            let loadTime = Date()
-            adventDay.loadInput()
-            print("\(self.title!) input loaded in \(self.getElapsedTimeString(from: loadTime))")
-            self.startTime = Date()
-            adventDay.solveFirst()
-            adventDay.solveSecond()
-        }
-    }
-
-    func setSolution1(_ text: String) {
-        self.solution1Time = Date()
-        let timeString = self.getElapsedTimeString(from: self.startTime)
-        self.solution1Label.text = "\(text)\n\n\(timeString)"
-        print("\(self.title!) Solution 1: \(text) -- \(timeString)")
-    }
-
-    func setSolution2(_ text: String) {
-        let timeString = self.getElapsedTimeString(from: self.solution1Time)
-        self.solution2Label.text = "\(text)\n\n\(timeString)"
-        print("\(self.title!) Solution 2: \(text) -- \(timeString)")
-    }
-
-    private func getElapsedTimeString(from date: Date) -> String {
-        let elapsedTime = Date().timeIntervalSince(date)
-        return String(format: "Time = %.4f", elapsedTime)
+        
+        return stackView
     }
 }
-

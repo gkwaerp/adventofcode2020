@@ -1,5 +1,5 @@
 //
-//  OverviewViewController.swift
+//  CalendarViewController.swift
 //  AdventOfCode2020
 //
 //  Created by Geir-Kåre S. Wærp on 21/10/2020.
@@ -7,12 +7,15 @@
 
 import UIKit
 
-class OverviewViewController: UIViewController {
+class CalendarViewController: UIViewController {
     private let mainStackView = UIStackView()
     private var subStackViews = [UIStackView]()
 
     private let verticalSpacing: CGFloat = 4
     private let horizontalSpacing: CGFloat = 16
+    
+    //Days start at 1, not 0.
+    private var calendarDays: [Int: UIViewController] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +55,7 @@ class OverviewViewController: UIViewController {
         button.setTitle("Day \(dayString)", for: .normal)
         button.tag = day
         button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
-        button.isEnabled = (self.getViewController(for: day) != nil)
+        button.isEnabled = (self.calendarDays[day] != nil)
         return button
     }
     
@@ -70,17 +73,10 @@ class OverviewViewController: UIViewController {
     }
     
     @objc private func buttonTapped(sender: UIButton) {
-        if let vc = self.getViewController(for: sender.tag) {
+        if let vc = self.calendarDays[sender.tag] {
             vc.modalPresentationStyle = .overFullScreen
             vc.title = String(format: "Day %02d", sender.tag)
             self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-
-    private func getViewController(for day: Int) -> UIViewController? {
-        switch day {
-        case 1: return Day01VC()
-        default: return nil
         }
     }
 }
