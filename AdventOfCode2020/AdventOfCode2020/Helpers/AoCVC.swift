@@ -7,11 +7,12 @@
 
 import UIKit
 
+
+
 protocol AdventDay {
-    var numChallenges: Int { get }
-    
     func loadInput()
-    func solve(challenge: Int)
+    func solveFirst()
+    func solveSecond()
 }
 
 class AoCVC: UIViewController {
@@ -30,9 +31,7 @@ class AoCVC: UIViewController {
         return adventDay
     }
     
-    private var numChallenges: Int {
-        return self.adventDay.numChallenges
-    }
+    private var numChallenges = 2
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +40,20 @@ class AoCVC: UIViewController {
         self.configureUI()
     }
     
+    private var hasAppeared = false
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.loadInput()
+        if !self.hasAppeared {
+            self.loadInput()
+            self.enableButtons()
+            self.hasAppeared = true
+        }
+    }
+    
+    private func enableButtons() {
+        self.solutionButtons.forEach({$0.isEnabled = true})
     }
 
     private func initializeTimers() {
@@ -84,11 +93,6 @@ class AoCVC: UIViewController {
         self.solutionLabels[challenge].isHidden = false
         print("\(self.title!) Solution \(challenge + 1): \(text) -- \(timeString)")
     }
-    
-    func setSolvable(challenge: Int, isSolvable: Bool) {
-        guard challenge >= 0, challenge < self.solutionButtons.count else { fatalError("Invalid index.") }
-        self.solutionButtons[challenge].isEnabled = isSolvable
-    }
 }
 
 // UI creation
@@ -115,7 +119,14 @@ extension AoCVC {
         let index = sender.tag
         sender.isEnabled = false
         self.solutionStartTimes[index] = Date()
-        self.adventDay.solve(challenge: index)
+        switch sender.tag {
+        case 0:
+            self.adventDay.solveFirst()
+        case 1:
+            self.adventDay.solveSecond()
+        default:
+            fatalError("Invalid button index.")
+        }
     }
     
     private func createStackView() -> UIStackView {

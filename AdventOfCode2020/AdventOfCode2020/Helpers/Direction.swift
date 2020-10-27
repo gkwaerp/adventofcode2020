@@ -42,10 +42,10 @@ enum Direction: Int, CaseIterable {
     
     static func from(string: String) -> Direction {
         switch string {
-        case "U", "N": return .north
-        case "D", "S": return .south
-        case "L", "W": return .west
-        case "R", "E": return .east
+        case "U", "N", "^": return .north
+        case "D", "S", "v": return .south
+        case "L", "W", "<": return .west
+        case "R", "E", ">": return .east
         default: fatalError()
         }
     }

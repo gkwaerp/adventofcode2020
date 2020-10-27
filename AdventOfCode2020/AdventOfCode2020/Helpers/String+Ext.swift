@@ -12,15 +12,15 @@ extension String {
         return self.map({"\($0)"})
     }
     
-    func loadAsTextLines(fileType: String? = nil) -> [String] {
+    func loadAsTextLines(fileType: String? = "txt") -> [String] {
         return FileLoader.loadTextLines(fileName: self, fileType: fileType)
     }
     
-    func loadAsTextFirstLine(fileType: String? = nil) -> String {
-        return self.loadAsTextLines().first!
+    func loadAsTextFirstLine(fileType: String? = "txt") -> String {
+        return self.loadAsTextLines(fileType: fileType).first!
     }
     
-    func loadJSON<T: Codable>(fileType: String? = nil, parseType: T.Type) -> T {
+    func loadJSON<T: Codable>(fileType: String? = "txt", parseType: T.Type) -> T {
         return FileLoader.loadJSON(fileName: self, fileType: fileType, parseType: parseType)
     }
     
