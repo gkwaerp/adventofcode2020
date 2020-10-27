@@ -45,7 +45,6 @@ class AoCVC: UIViewController {
         super.viewDidAppear(animated)
         
         self.loadInput()
-        self.enableButtons()
     }
 
     private func initializeTimers() {
@@ -76,17 +75,19 @@ class AoCVC: UIViewController {
         self.adventDay.loadInput()
         print("\(self.title!) input loaded in \(DateHelper.getElapsedTimeString(from: loadTime))")
     }
-    
-    private func enableButtons() {
-        self.solutionButtons.forEach({$0.isEnabled = true})
-    }
 
     func setSolution(challenge: Int, text: String) {
+        guard challenge >= 0, challenge < self.solutionStartTimes.count else { fatalError("Invalid index.") }
         let timeString = DateHelper.getElapsedTimeString(from: self.solutionStartTimes[challenge])
         self.solutionButtons[challenge].isHidden = true
         self.solutionLabels[challenge].text = "\(text)\n\n\(timeString)"
         self.solutionLabels[challenge].isHidden = false
         print("\(self.title!) Solution \(challenge + 1): \(text) -- \(timeString)")
+    }
+    
+    func setSolvable(challenge: Int, isSolvable: Bool) {
+        guard challenge >= 0, challenge < self.solutionButtons.count else { fatalError("Invalid index.") }
+        self.solutionButtons[challenge].isEnabled = isSolvable
     }
 }
 
@@ -117,7 +118,7 @@ extension AoCVC {
         self.adventDay.solve(challenge: index)
     }
     
-    func createStackView() -> UIStackView {
+    private func createStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
