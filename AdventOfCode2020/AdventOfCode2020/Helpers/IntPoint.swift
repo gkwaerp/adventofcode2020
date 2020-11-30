@@ -105,16 +105,16 @@ class IntPoint: Equatable, Hashable, CustomStringConvertible {
 
         return GridInfo(minExtents: minExtents, maxExtents: maxExtents)
     }
-
-    static func gridPoints(x: Int, y: Int) -> [IntPoint] {
+    
+    lazy var gridPoints: [IntPoint] = {
         var allPoints = [IntPoint]()
-        for yPos in 0..<y {
-            for xPos in 0..<x {
+        for yPos in 0..<self.y {
+            for xPos in 0..<self.x {
                 allPoints.append(IntPoint(x: xPos, y: yPos))
             }
         }
         return allPoints
-    }
+    }()
 }
 
 struct GridInfo {
@@ -134,7 +134,7 @@ struct GridInfo {
     }
 
     var allPoints: [IntPoint] {
-        let rawPoints = IntPoint.gridPoints(x: self.width, y: self.height)
+        let rawPoints = IntPoint(x: self.width, y: self.height).gridPoints
         return rawPoints.map({minExtents + $0})
     }
 }

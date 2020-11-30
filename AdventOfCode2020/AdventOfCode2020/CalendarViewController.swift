@@ -15,7 +15,7 @@ class CalendarViewController: UIViewController {
     private let horizontalSpacing: CGFloat = 16
     
     //Days start at 1, not 0.
-    private var calendarDays: [Int: UIViewController] = [:]
+    private var calendarDays: [Int: AoCVC.Type] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,10 +73,10 @@ class CalendarViewController: UIViewController {
     }
     
     @objc private func buttonTapped(sender: UIButton) {
-        if let vc = self.calendarDays[sender.tag] {
-            vc.modalPresentationStyle = .overFullScreen
-            vc.title = String(format: "Day %02d", sender.tag)
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        guard let vcType = self.calendarDays[sender.tag] else { fatalError("Invalid VC.") }
+        let vc = vcType.init()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.title = String(format: "Day %02d", sender.tag)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

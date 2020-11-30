@@ -20,11 +20,14 @@
 		04B17B9F2540AE7100FE3DB5 /* FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17B9E2540AE7100FE3DB5 /* FileLoader.swift */; };
 		04B17BA12540AE9600FE3DB5 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BA02540AE9600FE3DB5 /* String+Ext.swift */; };
 		04B17BA32540AF6100FE3DB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BA22540AF6100FE3DB5 /* Node.swift */; };
-		04B17BA52540AFED00FE3DB5 /* IntImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BA42540AFED00FE3DB5 /* IntImage.swift */; };
+		04B17BA52540AFED00FE3DB5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BA42540AFED00FE3DB5 /* Image.swift */; };
 		04B17BA72540B15D00FE3DB5 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BA62540B15D00FE3DB5 /* Misc.swift */; };
 		04B17BA92540B18700FE3DB5 /* IntAStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BA82540B18700FE3DB5 /* IntAStar.swift */; };
 		04B17BAB2540B1CD00FE3DB5 /* AoCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BAA2540B1CD00FE3DB5 /* AoCVC.swift */; };
 		04B17BB12540C4A400FE3DB5 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BB02540C4A400FE3DB5 /* DateHelper.swift */; };
+		04CA183F25758DCF000F54BD /* PermutationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA183E25758DCF000F54BD /* PermutationHelper.swift */; };
+		04CA184325758DF7000F54BD /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184225758DF7000F54BD /* Grid.swift */; };
+		04CA184625758E13000F54BD /* TravellingSalesmanHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,11 +46,14 @@
 		04B17B9E2540AE7100FE3DB5 /* FileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoader.swift; sourceTree = "<group>"; };
 		04B17BA02540AE9600FE3DB5 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		04B17BA22540AF6100FE3DB5 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		04B17BA42540AFED00FE3DB5 /* IntImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntImage.swift; sourceTree = "<group>"; };
+		04B17BA42540AFED00FE3DB5 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		04B17BA62540B15D00FE3DB5 /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		04B17BA82540B18700FE3DB5 /* IntAStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntAStar.swift; sourceTree = "<group>"; };
 		04B17BAA2540B1CD00FE3DB5 /* AoCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AoCVC.swift; sourceTree = "<group>"; };
 		04B17BB02540C4A400FE3DB5 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		04CA183E25758DCF000F54BD /* PermutationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermutationHelper.swift; sourceTree = "<group>"; };
+		04CA184225758DF7000F54BD /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellingSalesmanHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,11 +108,14 @@
 				04B17B9E2540AE7100FE3DB5 /* FileLoader.swift */,
 				04B17BA02540AE9600FE3DB5 /* String+Ext.swift */,
 				04B17BA22540AF6100FE3DB5 /* Node.swift */,
-				04B17BA42540AFED00FE3DB5 /* IntImage.swift */,
+				04B17BA42540AFED00FE3DB5 /* Image.swift */,
 				04B17BA62540B15D00FE3DB5 /* Misc.swift */,
 				04B17BA82540B18700FE3DB5 /* IntAStar.swift */,
 				04B17BAA2540B1CD00FE3DB5 /* AoCVC.swift */,
 				04B17BB02540C4A400FE3DB5 /* DateHelper.swift */,
+				04CA183E25758DCF000F54BD /* PermutationHelper.swift */,
+				04CA184225758DF7000F54BD /* Grid.swift */,
+				04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -138,7 +147,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					04B17B7D2540AD5E00FE3DB5 = {
 						CreatedOnToolsVersion = 11.7;
@@ -191,11 +200,14 @@
 				04B17B822540AD5E00FE3DB5 /* AppDelegate.swift in Sources */,
 				04B17BB12540C4A400FE3DB5 /* DateHelper.swift in Sources */,
 				04B17B842540AD5E00FE3DB5 /* SceneDelegate.swift in Sources */,
+				04CA184325758DF7000F54BD /* Grid.swift in Sources */,
+				04CA183F25758DCF000F54BD /* PermutationHelper.swift in Sources */,
 				04B17B9B2540ADFE00FE3DB5 /* IntPoint.swift in Sources */,
 				04B17BA72540B15D00FE3DB5 /* Misc.swift in Sources */,
-				04B17BA52540AFED00FE3DB5 /* IntImage.swift in Sources */,
+				04B17BA52540AFED00FE3DB5 /* Image.swift in Sources */,
 				04B17BA92540B18700FE3DB5 /* IntAStar.swift in Sources */,
 				04B17B992540ADDD00FE3DB5 /* Math.swift in Sources */,
+				04CA184625758E13000F54BD /* TravellingSalesmanHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +259,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -307,6 +320,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

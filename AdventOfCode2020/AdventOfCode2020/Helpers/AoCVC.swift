@@ -7,12 +7,24 @@
 
 import UIKit
 
-
-
 protocol AdventDay {
-    func loadInput()
     func solveFirst()
     func solveSecond()
+}
+
+protocol InputLoadable {
+    func loadInput()
+}
+
+protocol TestableDay {
+    func runTests()
+}
+
+extension InputLoadable where Self: UIViewController {
+    // DayXXInput
+    var defaultInputFileString: String {
+        return self.title!.appending("Input").replacingOccurrences(of: " ", with: "")
+    }
 }
 
 class AoCVC: UIViewController {
@@ -21,9 +33,12 @@ class AoCVC: UIViewController {
 
     private var solutionStartTimes: [Date] = []
     
-    // DayXXInput
-    var defaultInputFileString: String {
-        return self.title!.appending("Input").replacingOccurrences(of: " ", with: "")
+    required init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private var adventDay: AdventDay {
@@ -47,6 +62,7 @@ class AoCVC: UIViewController {
         
         if !self.hasAppeared {
             self.loadInput()
+            self.runTests()
             self.enableButtons()
             self.hasAppeared = true
         }
@@ -80,18 +96,30 @@ class AoCVC: UIViewController {
     }
     
     private func loadInput() {
-        let loadTime = Date()
-        self.adventDay.loadInput()
-        print("\(self.title!) input loaded in \(DateHelper.getElapsedTimeString(from: loadTime))")
+        if let inputLoadable = self as? InputLoadable {
+            let loadTime = Date()
+            inputLoadable.loadInput()
+            print("\(self.title!): Input loaded. \(DateHelper.getElapsedTimeString(from: loadTime))")
+        }
+    }
+    
+    private func runTests() {
+        if let testableDay = self as? TestableDay {
+            let testTime = Date()
+            testableDay.runTests()
+            print("\(self.title!): Tests OK. \(DateHelper.getElapsedTimeString(from: testTime))")
+        }
     }
 
     func setSolution(challenge: Int, text: String) {
         guard challenge >= 0, challenge < self.solutionStartTimes.count else { fatalError("Invalid index.") }
         let timeString = DateHelper.getElapsedTimeString(from: self.solutionStartTimes[challenge])
-        self.solutionButtons[challenge].isHidden = true
-        self.solutionLabels[challenge].text = "\(text)\n\n\(timeString)"
-        self.solutionLabels[challenge].isHidden = false
-        print("\(self.title!) Solution \(challenge + 1): \(text) -- \(timeString)")
+        DispatchQueue.main.async {
+            self.solutionButtons[challenge].isHidden = true
+            self.solutionLabels[challenge].text = "\(text)\n\n\(timeString)"
+            self.solutionLabels[challenge].isHidden = false
+            print("\(self.title!) Solution \(challenge + 1): \(text) -- \(timeString)")
+        }
     }
 }
 
@@ -101,6 +129,8 @@ extension AoCVC {
         let button = UIButton(type: .system)
         let title = "Solve \(challenge + 1)"
         button.setTitle(title, for: .normal)
+        button.setTitle("Initialization...", for: .disabled)
+        button.setTitle("Solving...", for: .highlighted)
         button.tag = challenge
         button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
         button.isEnabled = false
@@ -118,14 +148,18 @@ extension AoCVC {
     @objc private func buttonTapped(sender: UIButton) {
         let index = sender.tag
         sender.isEnabled = false
-        self.solutionStartTimes[index] = Date()
-        switch sender.tag {
-        case 0:
-            self.adventDay.solveFirst()
-        case 1:
-            self.adventDay.solveSecond()
-        default:
-            fatalError("Invalid button index.")
+        sender.setTitle("Solving...", for: .disabled)
+        let tag = sender.tag
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.solutionStartTimes[index] = Date()
+            switch tag {
+            case 0:
+                self.adventDay.solveFirst()
+            case 1:
+                self.adventDay.solveSecond()
+            default:
+                fatalError("Invalid button index.")
+            }
         }
     }
     
