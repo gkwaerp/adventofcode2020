@@ -15,7 +15,7 @@ class CalendarViewController: UIViewController {
     private let horizontalSpacing: CGFloat = 16
     
     //Days start at 1, not 0.
-    private var calendarDays: [Int: AoCVC.Type] = [:]
+    private var calendarDays: [Int: AoCVC.Type] = [1: Day01VC.self]
     
     override func viewDidLoad() {
         super.viewDidLoad()

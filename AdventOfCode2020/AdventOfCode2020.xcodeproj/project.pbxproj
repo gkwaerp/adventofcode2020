@@ -28,6 +28,8 @@
 		04CA183F25758DCF000F54BD /* PermutationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA183E25758DCF000F54BD /* PermutationHelper.swift */; };
 		04CA184325758DF7000F54BD /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184225758DF7000F54BD /* Grid.swift */; };
 		04CA184625758E13000F54BD /* TravellingSalesmanHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */; };
+		04CA184B25759130000F54BD /* Day01VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184A25759130000F54BD /* Day01VC.swift */; };
+		04CA184F2576070D000F54BD /* Day01Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04CA184E2576070D000F54BD /* Day01Input.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		04CA183E25758DCF000F54BD /* PermutationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermutationHelper.swift; sourceTree = "<group>"; };
 		04CA184225758DF7000F54BD /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellingSalesmanHelper.swift; sourceTree = "<group>"; };
+		04CA184A25759130000F54BD /* Day01VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day01VC.swift; sourceTree = "<group>"; };
+		04CA184E2576070D000F54BD /* Day01Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day01Input.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 		04B17B802540AD5E00FE3DB5 /* AdventOfCode2020 */ = {
 			isa = PBXGroup;
 			children = (
+				04CA184925759126000F54BD /* Days */,
 				04B17B952540AD9500FE3DB5 /* Helpers */,
 				04B17B812540AD5E00FE3DB5 /* AppDelegate.swift */,
 				04B17B832540AD5E00FE3DB5 /* SceneDelegate.swift */,
@@ -118,6 +123,15 @@
 				04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		04CA184925759126000F54BD /* Days */ = {
+			isa = PBXGroup;
+			children = (
+				04CA184A25759130000F54BD /* Day01VC.swift */,
+				04CA184E2576070D000F54BD /* Day01Input.txt */,
+			);
+			path = Days;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +194,7 @@
 				04B17B8E2540AD6100FE3DB5 /* LaunchScreen.storyboard in Resources */,
 				04B17B8B2540AD6100FE3DB5 /* Assets.xcassets in Resources */,
 				04B17B892540AD5E00FE3DB5 /* Main.storyboard in Resources */,
+				04CA184F2576070D000F54BD /* Day01Input.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +219,7 @@
 				04CA183F25758DCF000F54BD /* PermutationHelper.swift in Sources */,
 				04B17B9B2540ADFE00FE3DB5 /* IntPoint.swift in Sources */,
 				04B17BA72540B15D00FE3DB5 /* Misc.swift in Sources */,
+				04CA184B25759130000F54BD /* Day01VC.swift in Sources */,
 				04B17BA52540AFED00FE3DB5 /* Image.swift in Sources */,
 				04B17BA92540B18700FE3DB5 /* IntAStar.swift in Sources */,
 				04B17B992540ADDD00FE3DB5 /* Math.swift in Sources */,
