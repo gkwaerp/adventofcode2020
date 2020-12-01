@@ -128,10 +128,18 @@
 		04CA184925759126000F54BD /* Days */ = {
 			isa = PBXGroup;
 			children = (
+				04CA18792576D4E1000F54BD /* Day01 */,
+			);
+			path = Days;
+			sourceTree = "<group>";
+		};
+		04CA18792576D4E1000F54BD /* Day01 */ = {
+			isa = PBXGroup;
+			children = (
 				04CA184A25759130000F54BD /* Day01VC.swift */,
 				04CA184E2576070D000F54BD /* Day01Input.txt */,
 			);
-			path = Days;
+			path = Day01;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
