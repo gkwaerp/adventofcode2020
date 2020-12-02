@@ -16,7 +16,7 @@ class Day02VC: AoCVC, AdventDay, InputLoadable {
         
         var isValid: Bool {
             let numOccurrences = self.password.count - self.password.replacingOccurrences(of: self.character, with: "").count
-            return numOccurrences >= self.lower && numOccurrences <= self.upper
+            return (self.lower...self.upper).contains(numOccurrences)
         }
         
         var isValidNewPolicy: Bool {
