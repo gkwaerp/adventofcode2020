@@ -30,6 +30,8 @@
 		04CA184625758E13000F54BD /* TravellingSalesmanHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */; };
 		04CA184B25759130000F54BD /* Day01VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184A25759130000F54BD /* Day01VC.swift */; };
 		04CA184F2576070D000F54BD /* Day01Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04CA184E2576070D000F54BD /* Day01Input.txt */; };
+		04CA187C2576D51C000F54BD /* Day02VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA187B2576D51C000F54BD /* Day02VC.swift */; };
+		04CA188025775712000F54BD /* Day02Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04CA187F25775712000F54BD /* Day02Input.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellingSalesmanHelper.swift; sourceTree = "<group>"; };
 		04CA184A25759130000F54BD /* Day01VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day01VC.swift; sourceTree = "<group>"; };
 		04CA184E2576070D000F54BD /* Day01Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day01Input.txt; sourceTree = "<group>"; };
+		04CA187B2576D51C000F54BD /* Day02VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day02VC.swift; sourceTree = "<group>"; };
+		04CA187F25775712000F54BD /* Day02Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day02Input.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				04CA18792576D4E1000F54BD /* Day01 */,
+				04CA187A2576D50A000F54BD /* Day02 */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -140,6 +145,15 @@
 				04CA184E2576070D000F54BD /* Day01Input.txt */,
 			);
 			path = Day01;
+			sourceTree = "<group>";
+		};
+		04CA187A2576D50A000F54BD /* Day02 */ = {
+			isa = PBXGroup;
+			children = (
+				04CA187B2576D51C000F54BD /* Day02VC.swift */,
+				04CA187F25775712000F54BD /* Day02Input.txt */,
+			);
+			path = Day02;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B17B8E2540AD6100FE3DB5 /* LaunchScreen.storyboard in Resources */,
+				04CA188025775712000F54BD /* Day02Input.txt in Resources */,
 				04B17B8B2540AD6100FE3DB5 /* Assets.xcassets in Resources */,
 				04B17B892540AD5E00FE3DB5 /* Main.storyboard in Resources */,
 				04CA184F2576070D000F54BD /* Day01Input.txt in Resources */,
@@ -214,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B17BA12540AE9600FE3DB5 /* String+Ext.swift in Sources */,
+				04CA187C2576D51C000F54BD /* Day02VC.swift in Sources */,
 				04B17BA32540AF6100FE3DB5 /* Node.swift in Sources */,
 				04B17B9D2540AE2700FE3DB5 /* Direction.swift in Sources */,
 				04B17B972540ADA200FE3DB5 /* UIView+Ext.swift in Sources */,

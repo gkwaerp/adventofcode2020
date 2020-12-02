@@ -83,11 +83,11 @@ extension Day01VC: TestableDay {
             .map({Int($0)!})
         
         guard let resultA = self.getResult(from: testInput, searchFor: 2020) else { fatalError() }
-        guard resultA.values.sorted() == [1721, 299].sorted() else { fatalError() }
-        guard resultA.product == 514579 else { fatalError() }
+        assert(resultA.values.sorted() == [1721, 299].sorted())
+        assert(resultA.product == 514579)
         
         guard let resultB = self.getResult2(from: testInput.sorted(), searchFor: 2020) else { fatalError() }
-        guard resultB.values.sorted() == [979, 366, 675].sorted() else { fatalError() }
-        guard resultB.product == 241861950 else { fatalError() }
+        assert(resultB.values.sorted() == [979, 366, 675].sorted())
+        assert(resultB.product == 241861950)
     }
 }
