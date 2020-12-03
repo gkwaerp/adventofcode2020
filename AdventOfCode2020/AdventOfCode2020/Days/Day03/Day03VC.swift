@@ -11,15 +11,7 @@ class Day03VC: AoCVC, AdventDay, InputLoadable {
     private var grid: Grid!
     
     func loadInput() {
-        let input = self.defaultInputFileString.loadAsTextStringArray()
-        var values: [Grid.GridValue] = []
-        for line in input {
-            for char in line {
-                values.append(String(char))
-            }
-        }
-        let size = IntPoint(x: input.first!.count, y: input.count)
-        self.grid = Grid(size: size, values: values)
+        self.grid = self.defaultInputFileString.loadAsGrid()
     }
     
     private let p1Movement = IntPoint(x: 3, y: 1)
@@ -71,13 +63,8 @@ extension Day03VC: TestableDay {
         #...##....#
         .#..#...#.#
         """.components(separatedBy: "\n")
-        var values: [Grid.GridValue] = []
-        for line in testInput {
-            for char in line {
-                values.append(String(char))
-            }
-        }
-        let grid = Grid(size: IntPoint(x: testInput.first!.count, y: testInput.count), values: values)
+        let grid = Grid(stringArray: testInput)
+        
         let numTrees1 = self.countTrees(in: grid, with: self.p1Movement)
         let numTrees2 = self.p2Movements.map({self.countTrees(in: grid, with: $0)}).reduce(1, *)
         assert(numTrees1 == 7)

@@ -29,6 +29,18 @@ class Grid {
         self.init(size: size, values: values)
     }
     
+    /// Each element in the array corresponds to 1 row
+    convenience init(stringArray: [String]) {
+        var values: [Grid.GridValue] = []
+        for line in stringArray {
+            for char in line {
+                values.append(String(char))
+            }
+        }
+        let size = IntPoint(x: stringArray.first!.count, y: stringArray.count)
+        self.init(size: size, values: values)
+    }
+    
     init(size: IntPoint, values: [GridValue]) {
         guard size.x > 0, size.y > 0 else { fatalError("Invalid grid, size must be non-negative in both axes.") }
         guard size.x * size.y == values.count else { fatalError("Invalid grid, values doesn't match size." ) }

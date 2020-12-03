@@ -17,6 +17,11 @@ extension String {
         return FileLoader.loadText(fileName: self, fileType: fileType).components(separatedBy: separator).filter({!$0.isEmpty})
     }
     
+    func loadAsGrid(fileType: String? = "txt", separator: String = "\n") -> Grid {
+        let stringArray = self.loadAsTextStringArray(fileType: fileType, separator: separator)
+        return Grid(stringArray: stringArray)
+    }
+    
     func loadAsTextString(fileType: String? = "txt") -> String {
         return FileLoader.loadText(fileName: self, fileType: fileType)
     }
