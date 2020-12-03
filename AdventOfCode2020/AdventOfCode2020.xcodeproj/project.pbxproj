@@ -25,6 +25,7 @@
 		04B17BA92540B18700FE3DB5 /* IntAStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BA82540B18700FE3DB5 /* IntAStar.swift */; };
 		04B17BAB2540B1CD00FE3DB5 /* AoCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BAA2540B1CD00FE3DB5 /* AoCVC.swift */; };
 		04B17BB12540C4A400FE3DB5 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B17BB02540C4A400FE3DB5 /* DateHelper.swift */; };
+		04B5DC742578A9C2002F620D /* Day03Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04B5DC732578A9C2002F620D /* Day03Input.txt */; };
 		04CA183F25758DCF000F54BD /* PermutationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA183E25758DCF000F54BD /* PermutationHelper.swift */; };
 		04CA184325758DF7000F54BD /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184225758DF7000F54BD /* Grid.swift */; };
 		04CA184625758E13000F54BD /* TravellingSalesmanHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */; };
@@ -32,6 +33,7 @@
 		04CA184F2576070D000F54BD /* Day01Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04CA184E2576070D000F54BD /* Day01Input.txt */; };
 		04CA187C2576D51C000F54BD /* Day02VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA187B2576D51C000F54BD /* Day02VC.swift */; };
 		04CA188025775712000F54BD /* Day02Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04CA187F25775712000F54BD /* Day02Input.txt */; };
+		04CA188825780578000F54BD /* Day03VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA188725780578000F54BD /* Day03VC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,7 @@
 		04B17BA82540B18700FE3DB5 /* IntAStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntAStar.swift; sourceTree = "<group>"; };
 		04B17BAA2540B1CD00FE3DB5 /* AoCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AoCVC.swift; sourceTree = "<group>"; };
 		04B17BB02540C4A400FE3DB5 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		04B5DC732578A9C2002F620D /* Day03Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day03Input.txt; sourceTree = "<group>"; };
 		04CA183E25758DCF000F54BD /* PermutationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermutationHelper.swift; sourceTree = "<group>"; };
 		04CA184225758DF7000F54BD /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellingSalesmanHelper.swift; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 		04CA184E2576070D000F54BD /* Day01Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day01Input.txt; sourceTree = "<group>"; };
 		04CA187B2576D51C000F54BD /* Day02VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day02VC.swift; sourceTree = "<group>"; };
 		04CA187F25775712000F54BD /* Day02Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day02Input.txt; sourceTree = "<group>"; };
+		04CA188725780578000F54BD /* Day03VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day03VC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 			children = (
 				04CA18792576D4E1000F54BD /* Day01 */,
 				04CA187A2576D50A000F54BD /* Day02 */,
+				04CA188625780559000F54BD /* Day03 */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -154,6 +159,15 @@
 				04CA187F25775712000F54BD /* Day02Input.txt */,
 			);
 			path = Day02;
+			sourceTree = "<group>";
+		};
+		04CA188625780559000F54BD /* Day03 */ = {
+			isa = PBXGroup;
+			children = (
+				04CA188725780578000F54BD /* Day03VC.swift */,
+				04B5DC732578A9C2002F620D /* Day03Input.txt */,
+			);
+			path = Day03;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +232,7 @@
 				04B17B8B2540AD6100FE3DB5 /* Assets.xcassets in Resources */,
 				04B17B892540AD5E00FE3DB5 /* Main.storyboard in Resources */,
 				04CA184F2576070D000F54BD /* Day01Input.txt in Resources */,
+				04B5DC742578A9C2002F620D /* Day03Input.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +253,7 @@
 				04B17BAB2540B1CD00FE3DB5 /* AoCVC.swift in Sources */,
 				04B17B822540AD5E00FE3DB5 /* AppDelegate.swift in Sources */,
 				04B17BB12540C4A400FE3DB5 /* DateHelper.swift in Sources */,
+				04CA188825780578000F54BD /* Day03VC.swift in Sources */,
 				04B17B842540AD5E00FE3DB5 /* SceneDelegate.swift in Sources */,
 				04CA184325758DF7000F54BD /* Grid.swift in Sources */,
 				04CA183F25758DCF000F54BD /* PermutationHelper.swift in Sources */,
