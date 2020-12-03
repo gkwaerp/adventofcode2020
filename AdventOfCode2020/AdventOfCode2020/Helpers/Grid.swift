@@ -77,15 +77,14 @@ class Grid {
         return self.values.filter(filter)
     }
     
-    private var rawPrintClosure: PrintBlock = { (value) in
+    private static var rawPrintClosure: PrintBlock = { (value) in
         return value
     }
 
-    func asText(printClosure: PrintBlock? = nil) -> String {
+    func asText(printClosure: PrintBlock = Grid.rawPrintClosure) -> String {
         var finalText = "\n"
         for y in 0..<self.height {
             for x in 0..<self.width {
-                let printClosure = printClosure ?? self.rawPrintClosure
                 if let value = self.getValue(at: IntPoint(x: x, y: y)),
                     let outputString = printClosure(value) {
                     finalText.append(outputString)
@@ -93,5 +92,41 @@ class Grid {
             finalText.append("\n")
         }
         return finalText.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    typealias WalkableBlock = (GridValue) -> (Bool)
+    
+    private static var defaultWalkableBlock: WalkableBlock = { (gridValue) in
+        switch gridValue {
+        case "#":
+            return false
+        default:
+            return true
+        }
+    }
+    
+    func createAStarNodes(walkableBlock isWalkable: WalkableBlock = Grid.defaultWalkableBlock,
+                          allowedDirections: [Direction] = Direction.allCases,
+                          directionCosts: [Direction: Int] = [:],
+                          defaultCost: Int = 1) -> Set<AStarNode> {
+        var nodes = Set<AStarNode>()
+        for point in self.gridPoints {
+            guard let gridValue = self.getValue(at: point) else { continue }
+            if isWalkable(gridValue) {
+                nodes.insert(AStarNode(position: point))
+            }
+        }
+        
+        for node in nodes {
+            for direction in allowedDirections {
+                let newPosition = node.position + direction.movementVector
+                guard let newValue = self.getValue(at: newPosition), isWalkable(newValue) else { continue }
+                
+                let newNode = nodes.first(where: {$0.position == newPosition})!
+                let cost = directionCosts[direction, default: defaultCost]
+                node.edges.insert(AStarEdge(from: node, to: newNode, cost: cost))
+            }
+        }
+        return nodes
     }
 }

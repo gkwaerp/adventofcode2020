@@ -15,14 +15,18 @@ class TravellingSalesmanHelper {
         let longestPath: [String]?
     }
     
-    static func findShortestDistance(locationPermutations: [[String]], distanceMap: [String : Int]) -> Result {
+    /// Key = "Location1-Location2"
+    /// Value = Distance
+    /// Example: "Paris-London" : 344
+    typealias DistanceDictionary = [String : Int]
+    static func findShortestDistance(locationPermutations: [[String]], distanceDictionary: DistanceDictionary) -> Result {
         var shortestDistance: Int? = nil
         var shortestPath: [String]? = nil
         for permutation in locationPermutations {
             var currDistance = 0
             for i in 0..<permutation.count - 1 {
                 let key = "\(permutation[i])-\(permutation[i + 1])"
-                let distance = distanceMap[key]!
+                let distance = distanceDictionary[key]!
                 currDistance += distance
                 
                 if currDistance > (shortestDistance ?? Int.max) {
@@ -41,14 +45,14 @@ class TravellingSalesmanHelper {
                       longestPath: nil)
     }
     
-    static func findLongestDistance(locationPermutations: [[String]], distanceMap: [String : Int]) -> Result {
+    static func findLongestDistance(locationPermutations: [[String]], distanceDictionary: DistanceDictionary) -> Result {
         var longestDistance: Int? = nil
         var longestPath: [String]? = nil
         for permutation in locationPermutations {
             var currDistance = 0
             for i in 0..<permutation.count - 1 {
                 let key = "\(permutation[i])-\(permutation[i + 1])"
-                let distance = distanceMap[key]!
+                let distance = distanceDictionary[key]!
                 currDistance += distance
             }
             if currDistance > (longestDistance ?? 0) {
@@ -63,7 +67,7 @@ class TravellingSalesmanHelper {
                       longestPath: longestPath)
     }
     
-    static func findDistances(locationPermutations: [[String]], distanceMap: [String : Int]) -> Result {
+    static func findDistances(locationPermutations: [[String]], distanceDictionary: DistanceDictionary) -> Result {
         var shortestDistance: Int? = nil
         var shortestPath: [String]? = nil
         var longestDistance: Int? = nil
@@ -72,7 +76,7 @@ class TravellingSalesmanHelper {
             var currDistance = 0
             for i in 0..<permutation.count - 1 {
                 let key = "\(permutation[i])-\(permutation[i + 1])"
-                let distance = distanceMap[key]!
+                let distance = distanceDictionary[key]!
                 currDistance += distance
             }
             if currDistance < (shortestDistance ?? Int.max) {
