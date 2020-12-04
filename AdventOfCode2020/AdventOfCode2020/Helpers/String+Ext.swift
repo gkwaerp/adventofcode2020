@@ -13,8 +13,8 @@ extension String {
         return self.map({"\($0)"})
     }
     
-    func loadAsTextStringArray(fileType: String? = "txt", separator: String = "\n") -> [String] {
-        return FileLoader.loadText(fileName: self, fileType: fileType).components(separatedBy: separator).filter({!$0.isEmpty})
+    func loadAsTextStringArray(fileType: String? = "txt", separator: String = "\n", includeEmptyLines: Bool = false) -> [String] {
+        return FileLoader.loadText(fileName: self, fileType: fileType).components(separatedBy: separator).filter({!$0.isEmpty || includeEmptyLines})
     }
     
     func loadAsGrid(fileType: String? = "txt", separator: String = "\n") -> Grid {
