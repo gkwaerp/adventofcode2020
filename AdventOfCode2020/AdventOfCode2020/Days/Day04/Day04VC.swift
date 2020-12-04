@@ -69,7 +69,7 @@ class Day04VC: AoCVC, AdventDay, InputLoadable {
     private var passports: [Passport] = []
     
     func loadInput() {
-        let input = self.defaultInputFileString.loadAsTextStringArray(separator: "\n\n" ,includeEmptyLines: true)
+        let input = self.defaultInputFileString.loadAsTextStringArray(separator: "\n\n")
         let passportStrings = self.generatePassportStrings(from: input)
         self.passports = passportStrings.map({Passport.from($0)})
     }
