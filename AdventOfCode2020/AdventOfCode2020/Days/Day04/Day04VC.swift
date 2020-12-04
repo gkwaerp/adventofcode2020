@@ -69,28 +69,13 @@ class Day04VC: AoCVC, AdventDay, InputLoadable {
     private var passports: [Passport] = []
     
     func loadInput() {
-        let input = self.defaultInputFileString.loadAsTextStringArray(includeEmptyLines: true)
+        let input = self.defaultInputFileString.loadAsTextStringArray(separator: "\n\n" ,includeEmptyLines: true)
         let passportStrings = self.generatePassportStrings(from: input)
         self.passports = passportStrings.map({Passport.from($0)})
     }
     
     private func generatePassportStrings(from input: [String]) -> [String] {
-        var passportStrings: [String] = []
-        var currString = ""
-        
-        for line in input {
-            if line.isEmpty {
-                passportStrings.append(currString)
-                currString = ""
-            } else {
-                currString += " \(line)"
-            }
-        }
-        if !currString.isEmpty && passportStrings.last != currString {
-            passportStrings.append(currString)
-        }
-        
-        return passportStrings
+        return input.map({$0.replacingOccurrences(of: "\n", with: " ")})
     }
     
     func solveFirst() {
@@ -121,7 +106,7 @@ extension Day04VC: TestableDay {
 
         hcl:#cfa07d eyr:2025 pid:166559648
         iyr:2011 ecl:brn hgt:59in
-        """.components(separatedBy: "\n")
+        """.components(separatedBy: "\n\n")
         
         let passports1 = self.generatePassportStrings(from: testInput1).map({Passport.from($0)})
         assert(passports1.count == 4)
@@ -163,7 +148,7 @@ extension Day04VC: TestableDay {
         hgt:59cm ecl:zzz
         eyr:2038 hcl:74454a iyr:2023
         pid:3556412378 byr:2007
-        """.components(separatedBy: "\n")
+        """.components(separatedBy: "\n\n")
         
         let invalidPassports = self.generatePassportStrings(from: testInvalidInput).map({Passport.from($0)})
         assert(invalidPassports.allSatisfy({!$0.isValidStrict}))
@@ -182,7 +167,7 @@ extension Day04VC: TestableDay {
         eyr:2022
 
         iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719
-        """.components(separatedBy: "\n")
+        """.components(separatedBy: "\n\n")
         let validPassports = self.generatePassportStrings(from: testValidInput).map({Passport.from($0)})
         assert(validPassports.allSatisfy({$0.isValidStrict}))
     }
