@@ -18,7 +18,8 @@ class CalendarViewController: UIViewController {
     private var calendarDays: [Int: AoCVC.Type] = [1 : Day01VC.self,
                                                    2 : Day02VC.self,
                                                    3 : Day03VC.self,
-                                                   4 : Day04VC.self]
+                                                   4 : Day04VC.self,
+                                                   5 : Day05VC.self]
     
     override func viewDidLoad() {
         super.viewDidLoad()
