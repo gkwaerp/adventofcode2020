@@ -16,7 +16,7 @@ class Day05VC: AoCVC, AdventDay, InputLoadable {
             return (self.row * 8) + self.column
         }
         
-        static func from(_ string: String) -> Seat {
+        static func fromBinarySearch(_ string: String) -> Seat {
             var row = 0...127
             var column = 0...7
             for char in string {
@@ -39,13 +39,21 @@ class Day05VC: AoCVC, AdventDay, InputLoadable {
             guard column.lowerBound == column.upperBound else { fatalError("Invalid column") }
             return Seat(row: row.lowerBound, column: column.lowerBound)
         }
+        
+        static func fromBinaryConversion(_ string: String) -> Seat {
+            let binary = string.map({"BR".contains($0) ? "1" : "0"}).joined()
+            let seatID = Int(binary, radix: 2)!
+            let column = seatID % 8
+            let row = (seatID - column) / 8
+            return Seat(row: row, column: column)
+        }
     }
     
     private var seats: [Seat] = []
     
     func loadInput() {
         let input = self.defaultInputFileString.loadAsTextStringArray()
-        self.seats = input.map({Seat.from($0)})
+        self.seats = input.map({Seat.fromBinaryConversion($0)})
     }
     
     func solveFirst() {
@@ -77,10 +85,17 @@ extension Day05VC: TestableDay {
         FFFBBBFRRR
         BBFFBBFRLL
         """.components(separatedBy: "\n")
-        let seats = testInput.map({Seat.from($0)})
-        assert(seats[0].row == 44 && seats[0].column == 5 && seats[0].seatID == 357)
-        assert(seats[1].row == 70 && seats[1].column == 7 && seats[1].seatID == 567)
-        assert(seats[2].row == 14 && seats[2].column == 7 && seats[2].seatID == 119)
-        assert(seats[3].row == 102 && seats[3].column == 4 && seats[3].seatID == 820)
+        let seatsBinaryConversion = testInput.map({Seat.fromBinaryConversion($0)})
+        let seatsBinarySearch = testInput.map({Seat.fromBinarySearch($0)})
+        assert(seatsBinarySearch.count == seatsBinaryConversion.count)
+        for i in 0..<seatsBinarySearch.count {
+            assert(seatsBinarySearch[i].row == seatsBinaryConversion[i].row)
+            assert(seatsBinarySearch[i].column == seatsBinaryConversion[i].column)
+            assert(seatsBinarySearch[i].seatID == seatsBinaryConversion[i].seatID)
+        }
+        assert(seatsBinarySearch[0].row == 44 && seatsBinarySearch[0].column == 5 && seatsBinarySearch[0].seatID == 357)
+        assert(seatsBinarySearch[1].row == 70 && seatsBinarySearch[1].column == 7 && seatsBinarySearch[1].seatID == 567)
+        assert(seatsBinarySearch[2].row == 14 && seatsBinarySearch[2].column == 7 && seatsBinarySearch[2].seatID == 119)
+        assert(seatsBinarySearch[3].row == 102 && seatsBinarySearch[3].column == 4 && seatsBinarySearch[3].seatID == 820)
     }
 }
