@@ -24,9 +24,7 @@ class Day06VC: AoCVC, AdventDay, InputLoadable {
         }
         
         var everyoneAnswered: Set<String> {
-            return self.allAnswers.filter { (answer) -> Bool in
-                self.people.allSatisfy({$0.answers.contains(answer)})
-            }
+            return people.reduce(self.allAnswers, {$0.intersection($1.answers)})
         }
         
         static func from(_ string: String) -> Group {
