@@ -23,6 +23,6 @@ class FileLoader {
     }
     
     static func loadText(fileName: String, fileType: String? = nil) -> String {
-        return try! String(contentsOf: getURL(for: fileName, fileType: fileType), encoding: .utf8)
+        return try! String(contentsOf: getURL(for: fileName, fileType: fileType), encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

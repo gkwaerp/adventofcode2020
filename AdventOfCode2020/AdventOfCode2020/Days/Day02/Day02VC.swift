@@ -20,7 +20,7 @@ class Day02VC: AoCVC, AdventDay, InputLoadable {
         }
         
         var isValidNewPolicy: Bool {
-            let arrayed = self.password.toStringArray()
+            let arrayed = self.password.asStringArray
             let containsLower = arrayed[self.lower - 1] == self.character
             let containsUpper = arrayed[self.upper - 1] == self.character
             return containsLower != containsUpper

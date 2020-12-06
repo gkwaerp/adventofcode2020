@@ -9,10 +9,6 @@ import Foundation
 import CryptoKit
 
 extension String {
-    func toStringArray() -> [String] {
-        return self.map({"\($0)"})
-    }
-    
     func loadAsTextStringArray(fileType: String? = "txt", separator: String = "\n", includeEmptyLines: Bool = false) -> [String] {
         return FileLoader.loadText(fileName: self, fileType: fileType).components(separatedBy: separator).filter({!$0.isEmpty || includeEmptyLines})
     }
@@ -32,6 +28,10 @@ extension String {
     
     var intValue: Int? {
         return Int(self)
+    }
+    
+    var asStringArray: [String] {
+        return self.map({"\($0)"})
     }
     
     var boolValue: Bool? {
