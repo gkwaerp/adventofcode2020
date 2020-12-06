@@ -16,7 +16,7 @@ class Day06VC: AoCVC, AdventDay, InputLoadable {
         private var people: [Person]
         
         private var allAnswers: Set<String> {
-            return people.map({$0.answers}).reduce(Set(), {$0.union($1)})
+            return people.reduce(Set(), {$0.union($1.answers)})
         }
         
         var anyoneAnswered: Set<String> {
