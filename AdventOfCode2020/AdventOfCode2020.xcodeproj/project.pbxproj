@@ -32,6 +32,8 @@
 		04B5DCD0257B4D35002F620D /* Day05Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04B5DCCF257B4D35002F620D /* Day05Input.txt */; };
 		04B5DCD5257C5B33002F620D /* Day06VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5DCD4257C5B33002F620D /* Day06VC.swift */; };
 		04B5DCD9257C9D65002F620D /* Day06Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04B5DCD8257C9D65002F620D /* Day06Input.txt */; };
+		04B5DCDD257DEBA6002F620D /* Day07VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5DCDC257DEBA6002F620D /* Day07VC.swift */; };
+		04B5DCE1257DF146002F620D /* Day07Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04B5DCE0257DF146002F620D /* Day07Input.txt */; };
 		04CA183F25758DCF000F54BD /* PermutationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA183E25758DCF000F54BD /* PermutationHelper.swift */; };
 		04CA184325758DF7000F54BD /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184225758DF7000F54BD /* Grid.swift */; };
 		04CA184625758E13000F54BD /* TravellingSalesmanHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */; };
@@ -70,6 +72,8 @@
 		04B5DCCF257B4D35002F620D /* Day05Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day05Input.txt; sourceTree = "<group>"; };
 		04B5DCD4257C5B33002F620D /* Day06VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day06VC.swift; sourceTree = "<group>"; };
 		04B5DCD8257C9D65002F620D /* Day06Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day06Input.txt; sourceTree = "<group>"; };
+		04B5DCDC257DEBA6002F620D /* Day07VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day07VC.swift; sourceTree = "<group>"; };
+		04B5DCE0257DF146002F620D /* Day07Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day07Input.txt; sourceTree = "<group>"; };
 		04CA183E25758DCF000F54BD /* PermutationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermutationHelper.swift; sourceTree = "<group>"; };
 		04CA184225758DF7000F54BD /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellingSalesmanHelper.swift; sourceTree = "<group>"; };
@@ -172,6 +176,15 @@
 			path = Day06;
 			sourceTree = "<group>";
 		};
+		04B5DCDB257DEB97002F620D /* Day07 */ = {
+			isa = PBXGroup;
+			children = (
+				04B5DCDC257DEBA6002F620D /* Day07VC.swift */,
+				04B5DCE0257DF146002F620D /* Day07Input.txt */,
+			);
+			path = Day07;
+			sourceTree = "<group>";
+		};
 		04CA184925759126000F54BD /* Days */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +194,7 @@
 				04B5DC7625798A47002F620D /* Day04 */,
 				04B5DCCA257B4A46002F620D /* Day05 */,
 				04B5DCD3257C5B1E002F620D /* Day06 */,
+				04B5DCDB257DEB97002F620D /* Day07 */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -276,6 +290,7 @@
 				04B5DC7C2579FBA5002F620D /* Day04Input.txt in Resources */,
 				04B17B892540AD5E00FE3DB5 /* Main.storyboard in Resources */,
 				04CA184F2576070D000F54BD /* Day01Input.txt in Resources */,
+				04B5DCE1257DF146002F620D /* Day07Input.txt in Resources */,
 				04B5DC742578A9C2002F620D /* Day03Input.txt in Resources */,
 				04B5DCD0257B4D35002F620D /* Day05Input.txt in Resources */,
 			);
@@ -295,6 +310,7 @@
 				04B17B9D2540AE2700FE3DB5 /* Direction.swift in Sources */,
 				04B17B972540ADA200FE3DB5 /* UIView+Ext.swift in Sources */,
 				04B17B9F2540AE7100FE3DB5 /* FileLoader.swift in Sources */,
+				04B5DCDD257DEBA6002F620D /* Day07VC.swift in Sources */,
 				04B17B862540AD5E00FE3DB5 /* CalendarViewController.swift in Sources */,
 				04B17BAB2540B1CD00FE3DB5 /* AoCVC.swift in Sources */,
 				04B17B822540AD5E00FE3DB5 /* AppDelegate.swift in Sources */,
