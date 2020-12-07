@@ -8,71 +8,91 @@
 import UIKit
 
 class Day07VC: AoCVC, AdventDay, InputLoadable {
-    private struct BagRule {
-        let bagColor: String
-        let contents: [String: Int] // Bag color --> Count
+    private typealias BagContents = [String : Int] // Name --> Count
+    
+    private class BagNode {
+        let color: String
+        let contents: BagContents
+        var parents: [BagNode] = []
+        var children: [BagNode] = []
         
-        static func from(_ string: String) -> BagRule? {
+        init(string: String) {
             let trimmed = string.replacingOccurrences(of: ".", with: "")
-            guard !trimmed.hasSuffix("no other bags") else { return nil }
             let components = trimmed.components(separatedBy: "bags contain ")
-            let bagColor = components[0].trimmingCharacters(in: .whitespacesAndNewlines)
-            let bags = components[1].components(separatedBy: ", ")
-            var contents: [String : Int] = [:]
+            self.color = components[0].trimmingCharacters(in: .whitespacesAndNewlines)
+            self.contents = Self.getContents(from: components[1])
+        }
+        
+        private static func getContents(from string: String) -> BagContents {
+            guard !string.contains("no other bags") else { return [:] }
+            
+            let bags = string.components(separatedBy: ", ")
+            var contents: BagContents = [:]
             for bag in bags {
                 let split = bag.components(separatedBy: " ")
                 let count = split[0].intValue!
                 let bagColor = split[1...split.count-2].joined(separator: " ")
                 contents[bagColor] = count
             }
-            return BagRule(bagColor: bagColor, contents: contents)
+            return contents
         }
     }
     
-    private var bagRules: [BagRule] = []
-    
-    func loadInput() {
-        let input = self.defaultInputFileString.loadAsTextStringArray()
-        self.bagRules = input.compactMap({BagRule.from($0)})
-    }
-    
-    private func countIsContainedWithin(bagColor: String, using bagRules: [BagRule]) -> Int {
-        var bagsToCheckFor: Set<String> = [bagColor]
-        var checkedBags: Set<String> = []
+    private func createNodes(from input: [String]) -> [BagNode] {
+        let nodes = input.map({BagNode(string: $0)})
         
-        var containingBags: Set<String> = []
-        
-        while let bagToCheckFor = bagsToCheckFor.popFirst() {
-            checkedBags.insert(bagToCheckFor)
-            for bagRule in bagRules {
-                if bagRule.contents[bagToCheckFor] != nil {
-                    containingBags.insert(bagRule.bagColor)
-                    if !checkedBags.contains(bagRule.bagColor) {
-                        bagsToCheckFor.insert(bagRule.bagColor)
-                    }
-                }
+        for node in nodes {
+            for containedBag in node.contents {
+                guard let containedNode = nodes.first(where: {$0.color == containedBag.key}) else { fatalError() }
+                node.children.append(containedNode)
+                containedNode.parents.append(node)
             }
         }
         
-        return containingBags.count
+        return nodes
     }
     
-    private func countNestedBags(in bagColor: String, using bagRules: [BagRule]) -> Int {
-        guard let bagRule = bagRules.first(where: {$0.bagColor == bagColor}) else { return 0 }
-        var count = 0
-        for bagKey in bagRule.contents.keys {
-            count += bagRule.contents[bagKey]! * (1 + self.countNestedBags(in: bagKey, using: bagRules))
+    private var bagNodes: [BagNode] = []
+    
+    func loadInput() {
+        let input = self.defaultInputFileString.loadAsTextStringArray()
+        self.bagNodes = self.createNodes(from: input)
+    }
+    
+    private typealias RecursionResult = [(bagNode: BagNode, count: Int)]
+    private func getRecursive(startColor: String, nodes: [BagNode], searchParents: Bool, multiplier: Int = 1) -> RecursionResult {
+        guard let startNode = nodes.first(where: {$0.color == startColor}) else { fatalError("Can't find bag of requested color") }
+        let keyPath = searchParents ? \BagNode.parents : \BagNode.children
+        
+        var result: RecursionResult = []
+        let nodes = startNode[keyPath: keyPath]
+        
+        for node in nodes {
+            result.append((bagNode: node, count: multiplier * startNode.contents[node.color, default: 0]))
+            result.append(contentsOf: self.getRecursive(startColor: node.color,
+                                                        nodes: nodes,
+                                                        searchParents: searchParents,
+                                                        multiplier: multiplier * startNode.contents[node.color, default: 0]))
         }
-        return count
+        
+        return result
+    }
+    
+    private func countIsContainedWithinBags(innermostBagColor: String, nodes: [BagNode]) -> Int {
+        return Set(self.getRecursive(startColor: innermostBagColor, nodes: nodes, searchParents: true).map({$0.bagNode.color})).count
+    }
+    
+    private func countContainedBags(outermostBagColor: String, nodes: [BagNode]) -> Int {
+        return self.getRecursive(startColor: outermostBagColor, nodes: nodes, searchParents: false).map({$1}).reduce(0, +)
     }
     
     func solveFirst() {
-        let count = self.countIsContainedWithin(bagColor: "shiny gold", using: self.bagRules)
+        let count = self.countIsContainedWithinBags(innermostBagColor: "shiny gold", nodes: self.bagNodes)
         self.setSolution(challenge: 0, text: "\(count)")
     }
     
     func solveSecond() {
-        let count = self.countNestedBags(in: "shiny gold", using: self.bagRules)
+        let count = self.countContainedBags(outermostBagColor: "shiny gold", nodes: self.bagNodes)
         self.setSolution(challenge: 1, text: "\(count)")
     }
 }
@@ -91,10 +111,10 @@ extension Day07VC: TestableDay {
         faded blue bags contain no other bags.
         dotted black bags contain no other bags.
         """.components(separatedBy: "\n")
-        let bagRules = testInput.compactMap({BagRule.from($0)})
         
-        assert(self.countIsContainedWithin(bagColor: "shiny gold", using: bagRules) == 4)
-        assert(self.countNestedBags(in: "shiny gold", using: bagRules) == 32)
+        let testNodes = self.createNodes(from: testInput)
+        assert(self.countIsContainedWithinBags(innermostBagColor: "shiny gold", nodes: testNodes) == 4)
+        assert(self.countContainedBags(outermostBagColor: "shiny gold", nodes: testNodes) == 32)
         
         let testInput2 =
         """
@@ -106,7 +126,8 @@ extension Day07VC: TestableDay {
         dark blue bags contain 2 dark violet bags.
         dark violet bags contain no other bags.
         """.components(separatedBy: "\n")
-        let bagRules2 = testInput2.compactMap({BagRule.from($0)})
-        assert(self.countNestedBags(in: "shiny gold", using: bagRules2) == 126)
+        
+        let testNodes2 = self.createNodes(from: testInput2)
+        assert(self.countContainedBags(outermostBagColor: "shiny gold", nodes: testNodes2) == 126)
     }
 }
