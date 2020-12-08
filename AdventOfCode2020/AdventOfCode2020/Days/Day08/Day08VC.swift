@@ -29,30 +29,64 @@ class Day08VC: AoCVC, AdventDay, InputLoadable {
         }
     }
     
-    private struct Instruction {
-        let operation: Operation
-        let id = UUID().uuidString
+    private var operations: [Operation] = []
+    
+    private class Program {
+        enum ExitCode {
+            case success
+            case infiniteLoop
+            case invalidTermination
+        }
         
-        static func from(_ string: String) -> Instruction {
-            return Instruction(operation: Operation.from(string))
+        var accumulator = 0
+        private var instructionPointer = 0
+        private var seenInstructionIndices: Set<Int> = []
+        
+        @discardableResult
+        func resetAndRun(with operations: [Operation]) -> ExitCode {
+            self.reset()
+            return self.run(with: operations)
+        }
+        
+        private func run(with operations: [Operation]) -> ExitCode {
+            while true {
+                guard self.instructionPointer <= operations.count else { return .invalidTermination }
+                guard self.instructionPointer != operations.count else { break }
+                let operation = operations[self.instructionPointer]
+                guard self.seenInstructionIndices.insert(self.instructionPointer).inserted else { return .infiniteLoop }
+                switch operation {
+                case .jmp(let value):
+                    self.instructionPointer += value
+                case .acc(let value):
+                    self.accumulator += value
+                    self.instructionPointer += 1
+                case .nop:
+                    self.instructionPointer += 1
+                }
+            }
+            return .success
+        }
+        
+        private func reset() {
+            self.accumulator = 0
+            self.instructionPointer = 0
+            self.seenInstructionIndices.removeAll(keepingCapacity: true)
         }
     }
     
-    private var instructions: [Instruction] = []
-    
     func loadInput() {
         let input = self.defaultInputFileString.loadAsTextStringArray()
-        self.instructions = input.map({Instruction.from($0)})
+        self.operations = input.map({Operation.from($0)})
     }
     
     func solveFirst() {
-        let result = "\(self.run(instructions: self.instructions).accumulator)"
-        self.setSolution(challenge: 0, text: result)
+        let result = self.run(operations: self.operations)
+        self.setSolution(challenge: 0, text: "\(result)")
     }
     
     func solveSecond() {
-        let result = "\(self.runFixed(instructions: self.instructions))"
-        self.setSolution(challenge: 1, text: result)
+        let result = self.runFixed(operations: self.operations)
+        self.setSolution(challenge: 1, text: "\(result)")
     }
     
     private struct RunResult {
@@ -65,50 +99,31 @@ class Day08VC: AoCVC, AdventDay, InputLoadable {
         let accumulator: Int
     }
     
-    private func run(instructions: [Instruction]) -> RunResult {
-        var accumulator = 0
-        var instructionPointer = 0
-        var seenInstructions: Set<String> = []
-        
-        while true {
-            guard instructionPointer < instructions.count else {
-                let exitCode: RunResult.ExitCode = (instructionPointer == instructions.count) ? .success : .invalidTermination
-                return RunResult(exitCode: exitCode, accumulator: accumulator)
-            }
-            let instruction = instructions[instructionPointer]
-            guard seenInstructions.insert(instruction.id).inserted else { return RunResult(exitCode: .infiniteLoop, accumulator: accumulator) }
-            
-            switch instruction.operation {
-            case .jmp(let value):
-                instructionPointer += value
-            case .acc(let value):
-                accumulator += value
-                instructionPointer += 1
-            case .nop:
-                instructionPointer += 1
-            }
-        }
-        fatalError()
+    private func run(operations: [Operation]) -> Int {
+        let program = Program()
+        program.resetAndRun(with: operations)
+        return program.accumulator
     }
     
-    private func runFixed(instructions: [Instruction]) -> Int {
-        for i in 0..<instructions.count {
-            var instructions = instructions
-            switch instructions[i].operation {
+    private func runFixed(operations: [Operation]) -> Int {
+        let program = Program()
+        for i in 0..<operations.count {
+            var operations = operations
+            switch operations[i] {
             case .jmp(let value):
-                instructions[i] = Instruction(operation: .nop(value: value))
+                operations[i] = .nop(value: value)
             case .nop(let value):
-                instructions[i] = Instruction(operation: .jmp(value: value))
+                operations[i] = .jmp(value: value)
             case .acc:
                 continue
             }
             
-            let run = self.run(instructions: instructions)
-            if run.exitCode == .success {
-                return run.accumulator
+            let result = program.resetAndRun(with: operations)
+            if result == .success {
+                return program.accumulator
             }
         }
-        fatalError()
+        fatalError("No fix detected.")
     }
 }
 
@@ -126,9 +141,9 @@ extension Day08VC: TestableDay {
         jmp -4
         acc +6
         """.components(separatedBy: "\n")
-        let testInstructions = testInput.map({Instruction.from($0)})
+        let testOperations = testInput.map({Operation.from($0)})
         
-        assert(self.run(instructions: testInstructions).accumulator == 5)
-        assert(self.runFixed(instructions: testInstructions) == 8)
+        assert(self.run(operations: testOperations) == 5)
+        assert(self.runFixed(operations: testOperations) == 8)
     }
 }
