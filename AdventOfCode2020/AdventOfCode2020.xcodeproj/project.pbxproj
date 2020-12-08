@@ -34,6 +34,8 @@
 		04B5DCD9257C9D65002F620D /* Day06Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04B5DCD8257C9D65002F620D /* Day06Input.txt */; };
 		04B5DCDD257DEBA6002F620D /* Day07VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5DCDC257DEBA6002F620D /* Day07VC.swift */; };
 		04B5DCE1257DF146002F620D /* Day07Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04B5DCE0257DF146002F620D /* Day07Input.txt */; };
+		04B5DD0D257F3E72002F620D /* Day08VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5DD0C257F3E72002F620D /* Day08VC.swift */; };
+		04B5DD11257F4241002F620D /* Day08Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04B5DD10257F4241002F620D /* Day08Input.txt */; };
 		04CA183F25758DCF000F54BD /* PermutationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA183E25758DCF000F54BD /* PermutationHelper.swift */; };
 		04CA184325758DF7000F54BD /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184225758DF7000F54BD /* Grid.swift */; };
 		04CA184625758E13000F54BD /* TravellingSalesmanHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */; };
@@ -74,6 +76,8 @@
 		04B5DCD8257C9D65002F620D /* Day06Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day06Input.txt; sourceTree = "<group>"; };
 		04B5DCDC257DEBA6002F620D /* Day07VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day07VC.swift; sourceTree = "<group>"; };
 		04B5DCE0257DF146002F620D /* Day07Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day07Input.txt; sourceTree = "<group>"; };
+		04B5DD0C257F3E72002F620D /* Day08VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day08VC.swift; sourceTree = "<group>"; };
+		04B5DD10257F4241002F620D /* Day08Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day08Input.txt; sourceTree = "<group>"; };
 		04CA183E25758DCF000F54BD /* PermutationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermutationHelper.swift; sourceTree = "<group>"; };
 		04CA184225758DF7000F54BD /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellingSalesmanHelper.swift; sourceTree = "<group>"; };
@@ -185,6 +189,15 @@
 			path = Day07;
 			sourceTree = "<group>";
 		};
+		04B5DD0B257F3E62002F620D /* Day08 */ = {
+			isa = PBXGroup;
+			children = (
+				04B5DD0C257F3E72002F620D /* Day08VC.swift */,
+				04B5DD10257F4241002F620D /* Day08Input.txt */,
+			);
+			path = Day08;
+			sourceTree = "<group>";
+		};
 		04CA184925759126000F54BD /* Days */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +208,7 @@
 				04B5DCCA257B4A46002F620D /* Day05 */,
 				04B5DCD3257C5B1E002F620D /* Day06 */,
 				04B5DCDB257DEB97002F620D /* Day07 */,
+				04B5DD0B257F3E62002F620D /* Day08 */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -290,6 +304,7 @@
 				04B5DC7C2579FBA5002F620D /* Day04Input.txt in Resources */,
 				04B17B892540AD5E00FE3DB5 /* Main.storyboard in Resources */,
 				04CA184F2576070D000F54BD /* Day01Input.txt in Resources */,
+				04B5DD11257F4241002F620D /* Day08Input.txt in Resources */,
 				04B5DCE1257DF146002F620D /* Day07Input.txt in Resources */,
 				04B5DC742578A9C2002F620D /* Day03Input.txt in Resources */,
 				04B5DCD0257B4D35002F620D /* Day05Input.txt in Resources */,
@@ -326,6 +341,7 @@
 				04CA184B25759130000F54BD /* Day01VC.swift in Sources */,
 				04B17BA52540AFED00FE3DB5 /* Image.swift in Sources */,
 				04B17BA92540B18700FE3DB5 /* IntAStar.swift in Sources */,
+				04B5DD0D257F3E72002F620D /* Day08VC.swift in Sources */,
 				04B17B992540ADDD00FE3DB5 /* Math.swift in Sources */,
 				04CA184625758E13000F54BD /* TravellingSalesmanHelper.swift in Sources */,
 			);

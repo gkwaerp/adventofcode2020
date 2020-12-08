@@ -21,7 +21,8 @@ class CalendarViewController: UIViewController {
                                                    4 : Day04VC.self,
                                                    5 : Day05VC.self,
                                                    6 : Day06VC.self,
-                                                   7 : Day07VC.self]
+                                                   7 : Day07VC.self,
+                                                   8 : Day08VC.self]
     
     override func viewDidLoad() {
         super.viewDidLoad()
