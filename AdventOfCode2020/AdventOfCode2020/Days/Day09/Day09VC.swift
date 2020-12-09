@@ -15,7 +15,7 @@ class Day09VC: AoCVC, AdventDay, InputLoadable {
     }
     
     func solveFirst() {
-        let result = self.findFirstNonMatching(from: self.numbers, preamble: 25)
+        let result = self.findFirstNonMatching(in: self.numbers, preamble: 25)
         self.setSolution(challenge: 0, text: "\(result)")
     }
     
@@ -24,9 +24,9 @@ class Day09VC: AoCVC, AdventDay, InputLoadable {
         self.setSolution(challenge: 1, text: "\(result)")
     }
     
-    private func findFirstNonMatching(from numbers: [Int], preamble: Int) -> Int {
-        var window = Array(numbers.prefix(preamble))
-        let remaining = Array(numbers.dropFirst(preamble))
+    private func findFirstNonMatching(in numbers: [Int], preamble: Int) -> Int {
+        var window = numbers.prefix(preamble)
+        let remaining = numbers.dropFirst(preamble)
         for candidate in remaining {
             var found = false
             for num in window {
@@ -45,7 +45,7 @@ class Day09VC: AoCVC, AdventDay, InputLoadable {
     }
     
     private func findContiguousSumResult(in numbers: [Int], preamble: Int) -> Int {
-        let target = self.findFirstNonMatching(from: numbers, preamble: preamble)
+        let target = self.findFirstNonMatching(in: numbers, preamble: preamble)
         var startIndex = 0
         var endIndex = 1
         while startIndex < numbers.count {
@@ -90,7 +90,7 @@ extension Day09VC: TestableDay {
         576
         """.components(separatedBy: "\n").map({Int($0)!})
         let preamble = 5
-        assert(self.findFirstNonMatching(from: testInput, preamble: preamble) == 127)
+        assert(self.findFirstNonMatching(in: testInput, preamble: preamble) == 127)
         assert(self.findContiguousSumResult(in: testInput, preamble: preamble) == 62)
     }
 }
