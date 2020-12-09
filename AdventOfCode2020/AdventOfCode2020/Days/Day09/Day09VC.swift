@@ -47,15 +47,17 @@ class Day09VC: AoCVC, AdventDay, InputLoadable {
     private func findContiguousSumResult(in numbers: [Int], preamble: Int) -> Int {
         let target = self.findFirstNonMatching(in: numbers, preamble: preamble)
         var startIndex = 0
-        var endIndex = 1
+        var endIndex = 0
+        var currSum = numbers[startIndex]
         while startIndex < numbers.count {
-            let candidateWindow = numbers[startIndex...endIndex]
-            let sum = candidateWindow.reduce(0, +)
-            if sum == target {
+            if currSum == target {
+                let candidateWindow = numbers[startIndex...endIndex]
                 return candidateWindow.min()! + candidateWindow.max()!
-            } else if sum < target {
+            } else if currSum < target {
                 endIndex += 1
+                currSum += numbers[endIndex]
             } else {
+                currSum -= numbers[startIndex]
                 startIndex += 1
             }
         }
