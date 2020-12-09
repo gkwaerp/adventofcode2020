@@ -26,8 +26,7 @@ class Day09VC: AoCVC, AdventDay, InputLoadable {
     
     private func findFirstNonMatching(in numbers: [Int], preamble: Int) -> Int {
         var window = numbers.prefix(preamble)
-        let remaining = numbers.dropFirst(preamble)
-        for candidate in remaining {
+        for candidate in numbers[preamble...] {
             var found = false
             for num in window {
                 if window.contains(candidate - num) {
@@ -51,8 +50,8 @@ class Day09VC: AoCVC, AdventDay, InputLoadable {
         var currSum = numbers[startIndex]
         while startIndex < numbers.count {
             if currSum == target {
-                let candidateWindow = numbers[startIndex...endIndex]
-                return candidateWindow.min()! + candidateWindow.max()!
+                let finalSegment = numbers[startIndex...endIndex]
+                return finalSegment.min()! + finalSegment.max()!
             } else if currSum < target {
                 endIndex += 1
                 currSum += numbers[endIndex]
