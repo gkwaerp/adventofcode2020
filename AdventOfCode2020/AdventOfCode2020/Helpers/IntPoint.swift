@@ -19,6 +19,14 @@ class IntPoint: Equatable, Hashable, CustomStringConvertible {
         self.x = x
         self.y = y
     }
+    
+    /// Convenience -- only set 1 of north/south and 1 of east/west
+    init(north: Int = 0, south: Int = 0, east: Int = 0, west: Int = 0) {
+        guard north * south == 0 else { fatalError("Invalid north/south, only 1 can be set.") }
+        guard east * west == 0 else { fatalError("Invalid east/west, only 1 can be set.") }
+        self.x = east != 0 ? east : west
+        self.y = north != 0 ? -north : south
+    }
 
     static func == (lhs: IntPoint, rhs: IntPoint) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y
@@ -55,6 +63,12 @@ class IntPoint: Equatable, Hashable, CustomStringConvertible {
 
     func magnitude() -> Int {
         return abs(self.x) + abs(self.y)
+    }
+    
+    func rotate(around point: IntPoint, left: Bool) -> IntPoint {
+        let delta = self - point
+        let rotated = left ? IntPoint(x: delta.y, y: -delta.x) : IntPoint(x: -delta.y, y: delta.x)
+        return rotated + point
     }
     
     static func +(lhs: IntPoint, rhs: IntPoint) -> IntPoint {
@@ -115,6 +129,22 @@ class IntPoint: Equatable, Hashable, CustomStringConvertible {
         }
         return allPoints
     }()
+    
+    static var cardinalOffsets: [IntPoint] {
+        return Direction.allCases.map({$0.movementVector})
+    }
+    
+    static var diagonalOffsets: [IntPoint] {
+        return [IntPoint(x: 1, y: 1),
+                IntPoint(x: 1, y: -1),
+                IntPoint(x: -1, y: -1),
+                IntPoint(x: -1, y: 1)]
+    }
+    
+    /// Cardinal + Diagonal
+    static var allDirectionOffsets: [IntPoint] {
+        return cardinalOffsets + diagonalOffsets
+    }
 }
 
 struct GridInfo {
