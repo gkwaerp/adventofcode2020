@@ -29,6 +29,10 @@ class Grid {
         self.init(size: size, values: values)
     }
     
+    convenience init(grid: Grid) {
+        self.init(size: grid.size, values: grid.values)
+    }
+    
     /// Each element in the array corresponds to 1 row
     convenience init(stringArray: [String]) {
         var values: [Grid.GridValue] = []

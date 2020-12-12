@@ -38,10 +38,14 @@ class AStarNode {
     var parent: AStarNode?
     var edges: Set<AStarEdge>
     
+    /// Estimated cost
     var f: Int {
         return self.g + self.h
     }
+    /// Current best cost from start to here
     var g: Int
+    
+    /// Estimated remaining cost
     var h: Int
     
     init(position: IntPoint, edges: Set<AStarEdge> = []) {
