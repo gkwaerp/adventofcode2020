@@ -21,28 +21,21 @@ class Day15VC: AoCVC, AdventDay {
     }
     
     private func countingGame(numbers: [Int], numTurns: Int) -> Int {
-        var histories: [Int : [Int]] = [:] // Number --> When spoken
+        var history: [Int : Int] = [:] // Number --> Last spoken
         
-        var last = -1
-        for turn in 1...numTurns {
-            let number: Int
-            if numbers.count > turn - 1 {
-                number = numbers[turn - 1]
-            } else {
-                if histories[last, default: []].count > 1 {
-                    let history = histories[last]!
-                    let prevTurn = history.last!
-                    let priorTurn = history[history.count - 2]
-                    number = prevTurn - priorTurn
-                } else {
-                    number = 0
-                }
-            }
-            histories[number, default: []].append(turn)
-            last = number
+        for (turn, number) in numbers.enumerated() {
+            history[number] = turn
         }
         
-        return last
+        var lastSpoken = numbers.last!
+        for turn in numbers.count..<numTurns {
+            let candidate = (turn - history[lastSpoken, default: turn] - 1)
+            let number = candidate > 0 ? candidate : 0
+            history[lastSpoken] = turn - 1
+            lastSpoken = number
+        }
+        
+        return lastSpoken
     }
 }
 
@@ -50,9 +43,9 @@ class Day15VC: AoCVC, AdventDay {
 extension Day15VC: TestableDay {
     func runTests() {
         let p1 = self.countingGame(numbers: [0,3,6], numTurns: 2020)
-        let p2 = self.countingGame(numbers: [0,3,6], numTurns: 30000000)
-        
         assert(p1 == 436)
+        
+        let p2 = self.countingGame(numbers: [0,3,6], numTurns: 30000000)
         assert(p2 == 175594)
     }
 }
