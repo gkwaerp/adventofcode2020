@@ -14,6 +14,9 @@
 		045B01A82589CCC500BA1C97 /* Day16Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 045B01A72589CCC500BA1C97 /* Day16Input.txt */; };
 		045B01D2258B1C4900BA1C97 /* Day17VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B01D1258B1C4900BA1C97 /* Day17VC.swift */; };
 		045B01D6258B1F2B00BA1C97 /* Day17Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 045B01D5258B1F2B00BA1C97 /* Day17Input.txt */; };
+		045B028B258C812300BA1C97 /* Day18VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B028A258C812300BA1C97 /* Day18VC.swift */; };
+		045B0291258C837B00BA1C97 /* Day18Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 045B0290258C837B00BA1C97 /* Day18Input.txt */; };
+		047F3C37258D5CFA000A781D /* ReversePolishNotationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F3C36258D5CFA000A781D /* ReversePolishNotationHelper.swift */; };
 		0489A1972581E0A100129452 /* Day10VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489A1962581E0A100129452 /* Day10VC.swift */; };
 		0489A19B2581E35600129452 /* Day10Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0489A19A2581E35600129452 /* Day10Input.txt */; };
 		0489A19F258331F000129452 /* Day11VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489A19E258331F000129452 /* Day11VC.swift */; };
@@ -71,6 +74,9 @@
 		045B01A72589CCC500BA1C97 /* Day16Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day16Input.txt; sourceTree = "<group>"; };
 		045B01D1258B1C4900BA1C97 /* Day17VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day17VC.swift; sourceTree = "<group>"; };
 		045B01D5258B1F2B00BA1C97 /* Day17Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day17Input.txt; sourceTree = "<group>"; };
+		045B028A258C812300BA1C97 /* Day18VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day18VC.swift; sourceTree = "<group>"; };
+		045B0290258C837B00BA1C97 /* Day18Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day18Input.txt; sourceTree = "<group>"; };
+		047F3C36258D5CFA000A781D /* ReversePolishNotationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversePolishNotationHelper.swift; sourceTree = "<group>"; };
 		0489A1962581E0A100129452 /* Day10VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day10VC.swift; sourceTree = "<group>"; };
 		0489A19A2581E35600129452 /* Day10Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day10Input.txt; sourceTree = "<group>"; };
 		0489A19E258331F000129452 /* Day11VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day11VC.swift; sourceTree = "<group>"; };
@@ -168,6 +174,15 @@
 			path = Day17;
 			sourceTree = "<group>";
 		};
+		045B0289258C811400BA1C97 /* Day18 */ = {
+			isa = PBXGroup;
+			children = (
+				045B028A258C812300BA1C97 /* Day18VC.swift */,
+				045B0290258C837B00BA1C97 /* Day18Input.txt */,
+			);
+			path = Day18;
+			sourceTree = "<group>";
+		};
 		0489A1952581E09100129452 /* Day10 */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +278,7 @@
 				04CA183E25758DCF000F54BD /* PermutationHelper.swift */,
 				04CA184225758DF7000F54BD /* Grid.swift */,
 				04CA184525758E13000F54BD /* TravellingSalesmanHelper.swift */,
+				047F3C36258D5CFA000A781D /* ReversePolishNotationHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -332,6 +348,7 @@
 				045B01002588795000BA1C97 /* Day15 */,
 				045B01A225892C8D00BA1C97 /* Day16 */,
 				045B01D0258A763600BA1C97 /* Day17 */,
+				045B0289258C811400BA1C97 /* Day18 */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -439,6 +456,7 @@
 				0489A1B12585D93100129452 /* Day13Input.txt in Resources */,
 				0489A1B9258729A700129452 /* Day14Input.txt in Resources */,
 				04B5DCD0257B4D35002F620D /* Day05Input.txt in Resources */,
+				045B0291258C837B00BA1C97 /* Day18Input.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B5DCCC257B4A50002F620D /* Day05VC.swift in Sources */,
+				045B028B258C812300BA1C97 /* Day18VC.swift in Sources */,
 				04B17BA12540AE9600FE3DB5 /* String+Ext.swift in Sources */,
 				04CA187C2576D51C000F54BD /* Day02VC.swift in Sources */,
 				04B17BA32540AF6100FE3DB5 /* Node.swift in Sources */,
@@ -461,6 +480,7 @@
 				04B17B972540ADA200FE3DB5 /* UIView+Ext.swift in Sources */,
 				04B17B9F2540AE7100FE3DB5 /* FileLoader.swift in Sources */,
 				04B5DCDD257DEBA6002F620D /* Day07VC.swift in Sources */,
+				047F3C37258D5CFA000A781D /* ReversePolishNotationHelper.swift in Sources */,
 				04B17B862540AD5E00FE3DB5 /* CalendarViewController.swift in Sources */,
 				04B17BAB2540B1CD00FE3DB5 /* AoCVC.swift in Sources */,
 				04B17B822540AD5E00FE3DB5 /* AppDelegate.swift in Sources */,
