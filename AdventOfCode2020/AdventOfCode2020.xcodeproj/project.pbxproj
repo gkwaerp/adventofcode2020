@@ -17,6 +17,8 @@
 		045B028B258C812300BA1C97 /* Day18VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B028A258C812300BA1C97 /* Day18VC.swift */; };
 		045B0291258C837B00BA1C97 /* Day18Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 045B0290258C837B00BA1C97 /* Day18Input.txt */; };
 		047F3C37258D5CFA000A781D /* ReversePolishNotationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F3C36258D5CFA000A781D /* ReversePolishNotationHelper.swift */; };
+		047F3C442590D034000A781D /* Day21VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F3C432590D034000A781D /* Day21VC.swift */; };
+		047F3C472590D644000A781D /* Day21Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 047F3C462590D644000A781D /* Day21Input.txt */; };
 		0489A1972581E0A100129452 /* Day10VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489A1962581E0A100129452 /* Day10VC.swift */; };
 		0489A19B2581E35600129452 /* Day10Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0489A19A2581E35600129452 /* Day10Input.txt */; };
 		0489A19F258331F000129452 /* Day11VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489A19E258331F000129452 /* Day11VC.swift */; };
@@ -77,6 +79,8 @@
 		045B028A258C812300BA1C97 /* Day18VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day18VC.swift; sourceTree = "<group>"; };
 		045B0290258C837B00BA1C97 /* Day18Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day18Input.txt; sourceTree = "<group>"; };
 		047F3C36258D5CFA000A781D /* ReversePolishNotationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversePolishNotationHelper.swift; sourceTree = "<group>"; };
+		047F3C432590D034000A781D /* Day21VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day21VC.swift; sourceTree = "<group>"; };
+		047F3C462590D644000A781D /* Day21Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day21Input.txt; sourceTree = "<group>"; };
 		0489A1962581E0A100129452 /* Day10VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day10VC.swift; sourceTree = "<group>"; };
 		0489A19A2581E35600129452 /* Day10Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day10Input.txt; sourceTree = "<group>"; };
 		0489A19E258331F000129452 /* Day11VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day11VC.swift; sourceTree = "<group>"; };
@@ -181,6 +185,15 @@
 				045B0290258C837B00BA1C97 /* Day18Input.txt */,
 			);
 			path = Day18;
+			sourceTree = "<group>";
+		};
+		047F3C422590D01B000A781D /* Day21 */ = {
+			isa = PBXGroup;
+			children = (
+				047F3C432590D034000A781D /* Day21VC.swift */,
+				047F3C462590D644000A781D /* Day21Input.txt */,
+			);
+			path = Day21;
 			sourceTree = "<group>";
 		};
 		0489A1952581E09100129452 /* Day10 */ = {
@@ -349,6 +362,7 @@
 				045B01A225892C8D00BA1C97 /* Day16 */,
 				045B01D0258A763600BA1C97 /* Day17 */,
 				045B0289258C811400BA1C97 /* Day18 */,
+				047F3C422590D01B000A781D /* Day21 */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -445,6 +459,7 @@
 				0489A1AA2584880000129452 /* Day12Input.txt in Resources */,
 				0489A19B2581E35600129452 /* Day10Input.txt in Resources */,
 				045B01A82589CCC500BA1C97 /* Day16Input.txt in Resources */,
+				047F3C472590D644000A781D /* Day21Input.txt in Resources */,
 				045B01D6258B1F2B00BA1C97 /* Day17Input.txt in Resources */,
 				04B5DC7C2579FBA5002F620D /* Day04Input.txt in Resources */,
 				04B17B892540AD5E00FE3DB5 /* Main.storyboard in Resources */,
@@ -471,6 +486,7 @@
 				045B028B258C812300BA1C97 /* Day18VC.swift in Sources */,
 				04B17BA12540AE9600FE3DB5 /* String+Ext.swift in Sources */,
 				04CA187C2576D51C000F54BD /* Day02VC.swift in Sources */,
+				047F3C442590D034000A781D /* Day21VC.swift in Sources */,
 				04B17BA32540AF6100FE3DB5 /* Node.swift in Sources */,
 				0489A1B52587270200129452 /* Day14VC.swift in Sources */,
 				0489A1972581E0A100129452 /* Day10VC.swift in Sources */,
